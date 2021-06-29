@@ -40,8 +40,8 @@ function initAR(onSelect, onRender) {
 
   function render(timestamp, frame) {
     TWEEN.update();
-    if (onRender) {
-      onRender(frame);
+    if (onRender && frame) {
+      onRender(renderer, frame);
     }
     renderer.render(scene, camera);
   }
