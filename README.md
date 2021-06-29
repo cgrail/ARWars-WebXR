@@ -1,2 +1,3 @@
-# ARWars-WebXR
-ARWars WebXR Edittion
+# ARWars-WebXR Edition
+
+https://grails.de/ARWars-WebXR/
