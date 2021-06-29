@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "ARWars WebXR Edition",
   "scripts": {
-    "start": "live-server --open=web --watch=web"
+    "start": "live-server --open=web --watch=web",
+    "https": "http-server -S -C cert.pem"
   },
   "dependencies": {
+    "http-server": "^0.12.3",
     "live-server": "^1.2.1"
   }
 }
