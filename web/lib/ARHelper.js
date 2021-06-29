@@ -45,6 +45,7 @@ function initAR(render, onSelect) {
     scene,
     camera,
     renderer,
+    controller,
   };
 }
 
