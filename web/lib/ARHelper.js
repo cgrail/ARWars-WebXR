@@ -1,5 +1,5 @@
-import * as THREE from "./threejs/three.module.js";
 import { ARButton } from "./threejs/ARButton.js";
+import * as THREE from "https://threejs.org/build/three.module.js";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -10,7 +10,7 @@ const camera = new THREE.PerspectiveCamera(
 );
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
-function initAR(render, onSelect) {
+function initAR(onSelect, onRender) {
   const container = document.createElement("div");
   document.body.appendChild(container);
 
@@ -38,13 +38,20 @@ function initAR(render, onSelect) {
   controller.addEventListener("select", onSelect);
   scene.add(controller);
 
+  function render(timestamp, frame) {
+    TWEEN.update();
+    if (onRender) {
+      onRender(frame);
+    }
+    renderer.render(scene, camera);
+  }
+
   renderer.setAnimationLoop(render);
 
   return {
     THREE,
     scene,
     camera,
-    renderer,
     controller,
   };
 }
