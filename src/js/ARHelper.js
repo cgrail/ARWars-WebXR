@@ -51,7 +51,6 @@ function initAR(onSelect, onRender) {
   return {
     THREE,
     scene,
-    camera,
     controller,
   };
 }

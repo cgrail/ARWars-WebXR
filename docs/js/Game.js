@@ -2,7 +2,7 @@ import { initAR, getPositionWithOffset } from "./ARHelper.js";
 import { GameAssets } from "./GameAssets.js";
 import { playLaserFireSound, playExplosionSound } from "./Audio.js";
 
-const { THREE, scene, controller } = initAR(onSelect);
+const { THREE, scene, camera, controller } = initAR(onSelect);
 
 var tieFighter;
 
@@ -21,6 +21,7 @@ async function spawnFighter() {
   const tween = new TWEEN.Tween(position).to(targetPosition, 2000);
   tween.onUpdate(() => {
     tieFighter.position.copy(position);
+    tieFighter.lookAt(camera.position);
   });
   tween.start();
   scene.add(tieFighter);
@@ -38,7 +39,7 @@ function onSelect() {
   );
   laser.position.copy(position);
   laser.quaternion.setFromRotationMatrix(controller.matrixWorld);
-  const endPosition = new THREE.Vector3(0, -0.1, -3).applyMatrix4(
+  const endPosition = new THREE.Vector3(0, 0, -10).applyMatrix4(
     controller.matrixWorld
   );
   const tween = new TWEEN.Tween(position).to(endPosition, 2000);
