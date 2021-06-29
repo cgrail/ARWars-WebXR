@@ -1,29 +1,13 @@
-import { initAR } from "./ARHelper.js";
-import {
-  loadTieFighter,
-  explode,
-  playLaserFireSound,
-  playExplosionSound,
-} from "./GameAssets.js";
+import { initAR, getPositionWithOffset } from "./ARHelper.js";
+import { GameAssets } from "./GameAssets.js";
 
-const { THREE, scene, camera, controller } = initAR(onSelect);
+const { THREE, scene, controller } = initAR(onSelect);
 
 var tieFighter;
-spawnFighter();
-
-function getPositionWithOffset(offset) {
-  var dirMtx = new THREE.Matrix4();
-  dirMtx.makeRotationFromQuaternion(camera.quaternion);
-  var push = new THREE.Vector3(0, 0, -1.0);
-  push.transformDirection(dirMtx);
-  var pos = camera.position;
-  pos.addScaledVector(push, offset);
-  return pos;
-}
 
 async function spawnFighter() {
   if (!tieFighter) {
-    tieFighter = await loadTieFighter();
+    tieFighter = await GameAssets.loadTieFighter();
   }
   const targetPosition = getPositionWithOffset(2);
   targetPosition.setX(-Math.random());
@@ -42,7 +26,7 @@ async function spawnFighter() {
 }
 
 function onSelect() {
-  playLaserFireSound();
+  GameAssets.playLaserFireSound();
   const geometry = new THREE.BoxGeometry(0.03, 0.03, 2);
   const material = new THREE.MeshBasicMaterial({
     color: "red",
@@ -64,8 +48,8 @@ function onSelect() {
     if (tieFighterBox.intersectsBox(laserBox)) {
       scene.remove(laser);
       scene.remove(tieFighter);
-      explode(THREE, scene);
-      playExplosionSound();
+      GameAssets.explode(THREE, scene);
+      GameAssets.playExplosionSound();
       spawnFighter();
       tween.stop();
     }
@@ -76,3 +60,5 @@ function onSelect() {
   });
   scene.add(laser);
 }
+
+spawnFighter();

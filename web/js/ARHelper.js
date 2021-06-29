@@ -51,9 +51,18 @@ function initAR(onSelect, onRender) {
   return {
     THREE,
     scene,
-    camera,
     controller,
   };
 }
 
-export { initAR };
+function getPositionWithOffset(offset) {
+  var dirMtx = new THREE.Matrix4();
+  dirMtx.makeRotationFromQuaternion(camera.quaternion);
+  var push = new THREE.Vector3(0, 0, -1.0);
+  push.transformDirection(dirMtx);
+  var pos = camera.position;
+  pos.addScaledVector(push, offset);
+  return pos;
+}
+
+export { initAR, getPositionWithOffset };

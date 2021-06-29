@@ -88,4 +88,11 @@ function playLaserFireSound() {
   laserFire.play();
 }
 
-export { loadTieFighter, explode, playExplosionSound, playLaserFireSound };
+const GameAssets = {
+  loadTieFighter,
+  explode,
+  playExplosionSound,
+  playLaserFireSound,
+};
+
+export { GameAssets };
