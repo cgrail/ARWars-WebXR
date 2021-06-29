@@ -1,4 +1,4 @@
-import { ARButton } from "./threejs/ARButton.js";
+import { ARButton } from "https://threejs.org/examples/jsm/webxr/ARButton.js";
 import * as THREE from "https://threejs.org/build/three.module.js";
 
 const scene = new THREE.Scene();
