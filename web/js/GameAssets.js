@@ -78,21 +78,9 @@ function initParticle(particle) {
     .start();
 }
 
-function playExplosionSound() {
-  var explosion = new Audio("./assets/Explosion.mp3");
-  explosion.play();
-}
-
-function playLaserFireSound() {
-  var laserFire = new Audio("assets/Laser.mp3");
-  laserFire.play();
-}
-
 const GameAssets = {
   loadTieFighter,
   explode,
-  playExplosionSound,
-  playLaserFireSound,
 };
 
 export { GameAssets };

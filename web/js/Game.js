@@ -1,5 +1,6 @@
 import { initAR, getPositionWithOffset } from "./ARHelper.js";
 import { GameAssets } from "./GameAssets.js";
+import { playLaserFireSound, playExplosionSound } from "./Audio.js";
 
 const { THREE, scene, controller } = initAR(onSelect);
 
@@ -26,7 +27,7 @@ async function spawnFighter() {
 }
 
 function onSelect() {
-  GameAssets.playLaserFireSound();
+  playLaserFireSound();
   const geometry = new THREE.BoxGeometry(0.03, 0.03, 2);
   const material = new THREE.MeshBasicMaterial({
     color: "red",
@@ -49,7 +50,7 @@ function onSelect() {
       scene.remove(laser);
       scene.remove(tieFighter);
       GameAssets.explode(THREE, scene);
-      GameAssets.playExplosionSound();
+      playExplosionSound();
       spawnFighter();
       tween.stop();
     }
