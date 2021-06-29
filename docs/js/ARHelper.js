@@ -60,7 +60,7 @@ function getPositionWithOffset(offset) {
   dirMtx.makeRotationFromQuaternion(camera.quaternion);
   var push = new THREE.Vector3(0, 0, -1.0);
   push.transformDirection(dirMtx);
-  var pos = camera.position;
+  var pos = camera.getWorldPosition();
   pos.addScaledVector(push, offset);
   return pos;
 }
