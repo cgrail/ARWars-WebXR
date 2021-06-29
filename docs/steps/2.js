@@ -27,5 +27,3 @@ function onSelect() {
   });
   scene.add(laser);
 }
-
-spawnFighter();

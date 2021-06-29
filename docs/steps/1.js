@@ -16,5 +16,3 @@ function onSelect() {
   laser.quaternion.setFromRotationMatrix(controller.matrixWorld);
   scene.add(laser);
 }
-
-spawnFighter();
