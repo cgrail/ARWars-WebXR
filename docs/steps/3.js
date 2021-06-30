@@ -1,8 +1,12 @@
 import { initAR, getPositionWithOffset } from "./ARHelper.js";
+
+// ----------------START 1------------------------------
 import { GameAssets } from "./GameAssets.js";
+// ----------------END--------------------------------
 
 const { THREE, scene, camera, controller } = initAR(onSelect);
 
+// ----------------START 2------------------------------
 var tieFighter;
 
 async function spawnFighter() {
@@ -16,9 +20,10 @@ async function spawnFighter() {
   tieFighter.quaternion.setFromRotationMatrix(controller.matrixWorld);
   scene.add(tieFighter);
 }
+spawnFighter();
+// ----------------END--------------------------------
 
 function onSelect() {
-  playLaserFireSound();
   const geometry = new THREE.BoxGeometry(0.03, 0.03, 2);
   const material = new THREE.MeshBasicMaterial({
     color: "red",
@@ -29,6 +34,8 @@ function onSelect() {
   );
   laser.position.copy(position);
   laser.quaternion.setFromRotationMatrix(controller.matrixWorld);
+  scene.add(laser);
+
   const endPosition = new THREE.Vector3(0, 0, -10).applyMatrix4(
     controller.matrixWorld
   );
@@ -40,7 +47,4 @@ function onSelect() {
   tween.onComplete(() => {
     scene.remove(laser);
   });
-  scene.add(laser);
 }
-
-spawnFighter();

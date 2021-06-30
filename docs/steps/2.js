@@ -1,5 +1,4 @@
 import { initAR, getPositionWithOffset } from "./ARHelper.js";
-import { GameAssets } from "./GameAssets.js";
 
 const { THREE, scene, controller } = initAR(onSelect);
 
@@ -14,6 +13,8 @@ function onSelect() {
   );
   laser.position.copy(position);
   laser.quaternion.setFromRotationMatrix(controller.matrixWorld);
+  scene.add(laser);
+  // ----------------START------------------------------
   const endPosition = new THREE.Vector3(0, 0, -10).applyMatrix4(
     controller.matrixWorld
   );
@@ -25,5 +26,5 @@ function onSelect() {
   tween.onComplete(() => {
     scene.remove(laser);
   });
-  scene.add(laser);
+  // ----------------END--------------------------------
 }

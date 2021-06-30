@@ -1,9 +1,9 @@
 import { initAR, getPositionWithOffset } from "./ARHelper.js";
-import { GameAssets } from "./GameAssets.js";
 
 const { THREE, scene, controller } = initAR(onSelect);
 
 function onSelect() {
+  // ----------------START------------------------------
   const geometry = new THREE.BoxGeometry(0.03, 0.03, 2);
   const material = new THREE.MeshBasicMaterial({
     color: "red",
@@ -15,4 +15,5 @@ function onSelect() {
   laser.position.copy(position);
   laser.quaternion.setFromRotationMatrix(controller.matrixWorld);
   scene.add(laser);
+  // ----------------END--------------------------------
 }
