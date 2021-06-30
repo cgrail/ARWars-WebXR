@@ -23,6 +23,7 @@ function onSelect() {
     laser.position.copy(position);
   });
   tween.start();
+  // ----------------PAUSE------------------------------
   tween.onComplete(() => {
     scene.remove(laser);
   });
